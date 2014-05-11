@@ -1,4 +1,5 @@
-source 'http://ruby.taobao.org'
+#source 'https://ruby.taobao.org'
+source 'http://mirrors.aliyun.com/rubygems'
 
 gem 'rails', '4.1.1'
 gem 'mysql2'
@@ -15,4 +16,22 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'debugger', group: [:development, :test]
 
+#auth
+gem 'omniauth-identity'
+gem 'omniauth-github'
+gem 'omniauth'
+
+#UI
+gem 'bootstrap-sass', '~> 2.3.2'
+
+#template
+gem 'haml', '4.0.5'
+
+#server
 gem 'thin'
+
+#seo
+gem 'meta-tags'
+
+# Paignator
+gem 'kaminari', '~> 0.15.1'

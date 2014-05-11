@@ -1,0 +1,5 @@
+= form_tag '/auth/identity/register' do
+  = text_field_tag :email
+  = password_field_tag :password
+  = password_field_tag :password_confirm
+  = submit_tag "join"

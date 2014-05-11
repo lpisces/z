@@ -1,0 +1,19 @@
+default: &default
+  title: Z
+  host: localhost:3000
+
+development:
+  <<: *default
+  admin_emails:
+    - admin@example.com
+
+test:
+  <<: *default
+  admin_emails:
+    - admin@example.com
+
+production:
+  <<: *default
+
+  admin_emails:
+    # - admin@example.com
