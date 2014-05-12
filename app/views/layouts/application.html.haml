@@ -1,10 +1,32 @@
 !!!
 %html
   %head
-    %title Z
+    %title= CONFIG['title']
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    = yield 
+
+    .container-fluid 
+      .navbar.navbar-fixed-top
+        .navbar-inner
+          .container
+            %button.btn.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse", :type => "button"}
+              %span.icon-bar
+              %span.icon-bar
+              %span.icon-bar
+            %a.brand{:href => "/"}= CONFIG['title']
+            .nav-collapse.collapse
+              %ul.nav
+                %li
+                  /%a{:href => "/"} 首页
+    .container{:style => 'width:990px;mragin:0 auto;'}
+      #wrapper{:style => 'margin-top:50px;'}
+        = yield 
+        #push
+      #footer
+        .container
+          %p.muted.credit
+            Powered by 
+            %a{:href => "http://rubyonrails.org/"} Ruby on Rails
     = javascript_include_tag 'application', 'data-turbolinks-track' => true

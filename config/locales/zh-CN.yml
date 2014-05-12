@@ -1,0 +1,8 @@
+--- 
+"zh-CN":
+  sign_up: "注册"
+  sign_in: '登录'
+  email: '电子邮件'
+  password: '密码'
+  password_confirm: '确认密码'
+  sign_in_failed: '登录失败'

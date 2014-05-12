@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
-  get 'account/new'
+  root to: 'home#index'
 
-  match 'account/create', to: 'account#create', via: [:post, :get]
-  get 'session/new'
-  get 'session/create'
-  get 'session/destory'
-  get '/auth/:provider/callback', to: 'sessions#create'
+  #account 
+  match '/sign_up', to: 'account#new', via: [:get, ]
+  match '/sign_in', to: 'session#new', via: [:get,]
+  match '/sign_out', to: 'session#destory', via: [:get, :post]
+  match '/auth/:provider/callback', to: 'session#create', via: [:post, :get]
+
 end

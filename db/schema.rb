@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140511134941) do
+ActiveRecord::Schema.define(version: 20140512194038) do
 
   create_table "authentications", force: true do |t|
     t.integer  "user_id"
     t.string   "provider"
-    t.string   "provider_id"
+    t.string   "uid"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -2,21 +2,19 @@
   %li
     %a{:href => '/'} 首页
     %span.divider /
-  %li.active= I18n.t('sign_up')
-
-= form_tag '/auth/identity/register', :class => 'form-horizontal'  do
+  %li.active= I18n.t('sign_in')
+.alert
+  %button.close{"data-dismiss" => "alert", :type => "button"} &times;
+  %strong= flash[:notice]
+= form_tag '/auth/identity/callback', :class => 'form-horizontal'  do
   .control-group
     %label.control-label{:for => "email"}= I18n.t('email')
     .controls
-      %input#email{:placeholder => "Email", :type => "text", :name => 'email'}
+      %input#email{:placeholder => "Email", :type => "text", :name => 'auth_key'}
   .control-group
     %label.control-label{:for => "password"}= I18n.t('password')
     .controls
       %input#password{:placeholder => I18n.t('password'), :type => "password", :name => 'password'}
-  .control-group
-    %label.control-label{:for => "password_confirm"}= I18n.t('password_confirm')
-    .controls
-      %input#password_confirm{:placeholder => I18n.t('password_confirm'), :type => "password", :name => 'password_confirm'}
   .control-group
     .controls
       %button.btn.btn-mini.btn-success{:type => "submit"}= I18n.t('sign_in')
@@ -24,6 +22,5 @@
     .controls
       %span
         = "<i class='icon-info-sign'></i>".html_safe
-        如果已经有账号，请
-        %a.btn.btn-mini{:href => sign_in_path}= I18n.t('sign_in')
-
+        如果没有账号，请
+        %a.btn.btn-mini{:href => sign_up_path}= I18n.t('sign_up')
