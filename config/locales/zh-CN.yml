@@ -1,8 +1,18 @@
 --- 
 "zh-CN":
+  homepage: "首页"
   sign_up: "注册"
   sign_in: '登录'
+  sign_out: '退出'
   email: '电子邮件'
   password: '密码'
   password_confirm: '确认密码'
+  password_reset: '重置密码'
+  password_reset_msg: '请点击如下链接重置密码'
   sign_in_failed: '登录失败'
+  forgot_password: '忘记密码'
+  if_have_account: "如果已有账号"
+  if_have_no_account: "如果没有账号"
+  please: "请"
+  submit: '提交'
+  

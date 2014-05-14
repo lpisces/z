@@ -3,9 +3,10 @@
     %a{:href => '/'} 首页
     %span.divider /
   %li.active= I18n.t('sign_in')
-.alert
-  %button.close{"data-dismiss" => "alert", :type => "button"} &times;
-  %strong= flash[:notice]
+- if not flash[:notice].nil?
+  .alert
+    %button.close{"data-dismiss" => "alert", :type => "button"} &times;
+    %strong= flash[:notice]
 = form_tag '/auth/identity/callback', :class => 'form-horizontal'  do
   .control-group
     %label.control-label{:for => "email"}= I18n.t('email')
@@ -22,5 +23,5 @@
     .controls
       %span
         = "<i class='icon-info-sign'></i>".html_safe
-        如果没有账号，请
+        = (I18n.t('if_have_no_account') + "," + I18n.t("please")).html_safe
         %a.btn.btn-mini{:href => sign_up_path}= I18n.t('sign_up')

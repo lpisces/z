@@ -1,6 +1,6 @@
 %ul.breadcrumb
   %li
-    %a{:href => '/'} 首页
+    %a{:href => '/'}= I18n.t('homepage')
     %span.divider /
   %li.active= I18n.t('sign_up')
 
@@ -24,6 +24,6 @@
     .controls
       %span
         = "<i class='icon-info-sign'></i>".html_safe
-        如果已经有账号，请
+        = (I18n.t('if_have_account') + "," + I18n.t("please")).html_safe
         %a.btn.btn-mini{:href => sign_in_path}= I18n.t('sign_in')
 

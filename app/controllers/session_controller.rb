@@ -1,5 +1,5 @@
 class SessionController < ApplicationController
-  before_action :no_login_required, only: [:new, :create]
+  before_action :no_login_required, only: [:new, :create, :failure]
 
   def create
     @user = User.find_or_create_from_auth_hash(auth_hash)
@@ -13,6 +13,11 @@ class SessionController < ApplicationController
   end
 
   def new
+  end
+
+  def f
+    #flash[:notice] = I18n.t('sign_in_failed')
+    redirect_to sign_in_path, :notice => I18n.t('sign_in_failed')
   end
 
   protected
