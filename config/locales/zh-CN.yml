@@ -9,10 +9,14 @@
   password_confirm: '确认密码'
   password_reset: '重置密码'
   password_reset_msg: '请点击如下链接重置密码'
+  reset_password_user_not_exists: '该用户不存在!'
+  reset_password_succeed: '重置密码邮件已经发送，请查收！'
   sign_in_failed: '登录失败'
   forgot_password: '忘记密码'
   if_have_account: "如果已有账号"
   if_have_no_account: "如果没有账号"
   please: "请"
   submit: '提交'
+  return: '返回'
+  invalid_request: '非法请求!'
   

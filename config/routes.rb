@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   match '/sign_out', to: 'session#destory', via: [:get, :post]
   match 'forgot_password', to: 'account#forgot_password', via: [:get, ]
   match 'reset_password', to: 'password#reset', via: [:post, ]
+  match 'password_reset_failed', to: 'password#f', via: [:get, ]
   match '/auth/:provider/callback', to: 'session#create', via: [:post, :get]
 
 end
