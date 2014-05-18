@@ -12,16 +12,21 @@
     %label.control-label{:for => "email"}= I18n.t('email')
     .controls
       %input#email{:placeholder => "Email", :type => "text", :name => 'auth_key'}
+      %span.help-inline
   .control-group
     %label.control-label{:for => "password"}= I18n.t('password')
     .controls
       %input#password{:placeholder => I18n.t('password'), :type => "password", :name => 'password'}
+      %span.help-inline
   .control-group
     .controls
       %button.btn.btn-mini.btn-success{:type => "submit"}= I18n.t('sign_in')
+      %span.help-inline
   .control-group
     .controls
       %span
         = "<i class='icon-info-sign'></i>".html_safe
         = (I18n.t('if_have_no_account') + "," + I18n.t("please")).html_safe
         %a.btn.btn-mini{:href => sign_up_path}= I18n.t('sign_up')
+
+

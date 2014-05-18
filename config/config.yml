@@ -1,6 +1,7 @@
 default: &default
   title: Z
   host: l.com:3000
+  email_from: noreply@projetc-z.org
 
 development:
   <<: *default

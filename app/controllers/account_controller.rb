@@ -3,9 +3,6 @@ class AccountController < ApplicationController
     @identity = Identity.new 
   end
 
-  def create
-  end
-
   def forgot_password
   end
 

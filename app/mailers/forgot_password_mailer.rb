@@ -1,6 +1,5 @@
 class ForgotPasswordMailer < ActionMailer::Base
-  default from: "from@example.com", 'Content-Transfer-Encoding' => '7bit'
-  #default :from => Setting.email_sender
+  default from: CONFIG['email_from'], 'Content-Transfer-Encoding' => '7bit'
   default :charset => "utf-8"
   default :content_type => "text/html"
 
