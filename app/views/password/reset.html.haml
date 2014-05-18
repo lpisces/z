@@ -4,15 +4,17 @@
     %span.divider /
   %li.active= I18n.t('forgot_password')
 
-
-- if not flash[:notice].nil?
-  .alert
-    //%button.close{"data-dismiss" => "alert", :type => "button"} &times;
-    %strong= flash[:notice]
-- else
-  .alert
-    %strong= I18n.t('invalid_request')
-    &nbsp;
-    &nbsp;
-    &nbsp;
-    %a.btn.btn-success.btn-mini{:href => forgot_password_path}= I18n.t('return')
+= form_tag update_password_path, :class => 'form-horizontal'  do
+  
+  %input#password_reset_token{:type => "hidden", :name => 'password_reset_token', :value => @user.password_reset_token}
+  .control-group
+    %label.control-label{:for => "password"}= I18n.t('password')
+    .controls
+      %input#password{:placeholder => I18n.t('password'), :type => "password", :name => 'password'}
+  .control-group
+    %label.control-label{:for => "password_confirmation"}= I18n.t('password_confirmation')
+    .controls
+      %input#password_confirmation{:placeholder => I18n.t('password_confirmation'), :type => "password", :name => 'password_confirmation'}
+  .control-group
+    .controls
+      %button.btn.btn-mini.btn-success{:type => "submit"}= I18n.t('submit')

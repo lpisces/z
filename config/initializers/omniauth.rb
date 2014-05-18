@@ -1,9 +1,8 @@
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider :developer unless Rails.env.production?
   provider :github, 'd7b542204e76c4c1fa6e', '7247265630d358498e7d6b5bdac3b44b773e7bfa'
-  provider :identity, :fields => [:email], :model => Identity, :on_failed_registration => AccountController.action(:new)
+  provider :identity, :fields => [:email], :model => Identity, :on_failed_registration => Proc.new { |env| [302, {'Location' => '/sign_up_failure', 'Content-Type'=> 'text/html'}, []]}
 end
-#OmniAuth.config.on_failure = SessionController.action(:failure)
 
 OmniAuth.config.on_failure = Proc.new do |env|
 #  if env['omniauth.error']

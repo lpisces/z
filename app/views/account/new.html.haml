@@ -4,6 +4,11 @@
     %span.divider /
   %li.active= I18n.t('sign_up')
 
+- if not flash[:notice].nil?
+  .alert
+    %button.close{"data-dismiss" => "alert", :type => "button"} &times;
+    %strong= flash[:notice]
+
 = form_tag '/auth/identity/register', :class => 'form-horizontal'  do
   .control-group
     %label.control-label{:for => "email"}= I18n.t('email')
@@ -14,9 +19,9 @@
     .controls
       %input#password{:placeholder => I18n.t('password'), :type => "password", :name => 'password'}
   .control-group
-    %label.control-label{:for => "password_confirm"}= I18n.t('password_confirm')
+    %label.control-label{:for => "password_confirmation"}= I18n.t('password_confirmation')
     .controls
-      %input#password_confirm{:placeholder => I18n.t('password_confirm'), :type => "password", :name => 'password_confirm'}
+      %input#password_confirmation{:placeholder => I18n.t('password_confirmation'), :type => "password", :name => 'password_confirmation'}
   .control-group
     .controls
       %button.btn.btn-mini.btn-success{:type => "submit"}= I18n.t('sign_up')

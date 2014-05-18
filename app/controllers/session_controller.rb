@@ -16,7 +16,6 @@ class SessionController < ApplicationController
   end
 
   def f
-    #flash[:notice] = I18n.t('sign_in_failed')
     redirect_to sign_in_path, :notice => I18n.t('sign_in_failed')
   end
 
