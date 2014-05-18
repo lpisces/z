@@ -4,6 +4,7 @@
     %title= CONFIG['title']
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
 
@@ -38,4 +39,3 @@
           %p.muted.credit
             Powered by 
             %a{:href => "http://rubyonrails.org/"} Ruby on Rails
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true

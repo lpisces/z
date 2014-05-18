@@ -21,6 +21,8 @@
   forgot_password: '忘记密码'
   if_have_account: "如果已有账号"
   if_have_no_account: "如果没有账号"
+  if_forgot_password: "如果忘记密码"
+  reset_password_by_mail: "通过邮件找回密码"
   please: "请"
   submit: '提交'
   return: '返回'
