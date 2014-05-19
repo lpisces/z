@@ -4,7 +4,12 @@
   sign_up: "注册"
   sign_in: '登录'
   sign_out: '退出'
+  profile: '个人信息'
   email: '电子邮件'
+  nick: '昵称'
+  nick_requirement: '昵称长度为4 ~ 32个字节'
+  update_profile_succeed: '更新信息成功！'
+  update_profile_failed: '更新信息失败！'
   password: '密码'
   password_confirmation: '确认密码'
   password_reset: '重置密码'
@@ -17,7 +22,7 @@
   sorry_for_interrupt: '如果不是您本人操作,请忽略。'
   email_from: '本邮件发送自'
   sign_in_failed: '登录失败'
-  sign_up_failed: '注册失败'
+  sign_up_user_exists: '注册失败, 用户已经存在'
   forgot_password: '忘记密码'
   if_have_account: "如果已有账号"
   if_have_no_account: "如果没有账号"

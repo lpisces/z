@@ -28,8 +28,16 @@
                   %li
                     %a{:href => sign_up_path}= I18n.t('sign_up')
                 - else
-                  %li
-                    %a{:href => sign_out_path}= I18n.t('sign_out')
+                  %li.dropdown
+                    %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                      = current_user.nick.nil? ? current_user.email : current_user.nick
+                      %b.caret
+                    %ul.dropdown-menu
+                      %li
+                        %a{:href => profile_path}= I18n.t('profile')
+                      %li.divider
+                      %li
+                        %a{:href => sign_out_path}= I18n.t('sign_out')
     .container{:style => 'width:990px;mragin:0 auto;'}
       #wrapper{:style => 'margin-top:50px;'}
         = yield 

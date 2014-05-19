@@ -1,4 +1,6 @@
 class PasswordController < ApplicationController
+  before_action :no_login_required
+
   def reset_mail
     @user = User.where('email' => params[:email]).first
     return redirect_to(password_reset_failed_path, :notice => I18n.t('reset_password_user_not_exists')) if @user.nil?
