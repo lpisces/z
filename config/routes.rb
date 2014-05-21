@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
 
+  get 'cpanel/index'
+
   root to: 'home#index'
 
 
   #cpanel
+  match '/cpanel', to: 'cpanel#index', via: [:get, ]
   scope '/cpanel' do
     resources :categories
   end

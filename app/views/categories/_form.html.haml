@@ -19,7 +19,7 @@
     = f.label :parent_id, I18n.t('categories.parent_id'), :class => 'control-label', :style => 'width:80px'
     .controls{:style => 'margin-left:100px;'}
       /= f.number_field :parent_id, :autofocus => true
-      = f.select(:parent_id, Category.all.map{|c| [c.full_name, c.id] })
+      = f.select(:parent_id, Category.all.map{|c| [c.full_name, c.id] } << [I18n.t('categories.root'), 0])
       %span.help-inline= @category.errors[:parent_id].first unless @category.errors[:parent_id].empty?
 
 

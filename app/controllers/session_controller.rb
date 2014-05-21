@@ -5,7 +5,7 @@ class SessionController < ApplicationController
   def create
     @user = User.find_or_create_from_auth_hash(auth_hash)
     login_as @user
-    redirect_to '/'
+    redirect_to root_path
   end
 
   def destory

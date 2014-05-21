@@ -6,7 +6,7 @@ default: &default
 development:
   <<: *default
   admin_emails:
-    - admin@example.com
+    - iamalazyrat@gmail.com
 
 test:
   <<: *default

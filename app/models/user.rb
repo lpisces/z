@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
 
   validates :email, uniqueness: true
   validates_format_of :email, :with => /\A[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,}\z/i
-  validates :nick, uniqueness: true, length: {maximum: 32, minimum: 4}
+  #validates :nick, uniqueness: true, length: {maximum: 32, minimum: 4}
   has_many :authentications
 
   def self.find_or_create_from_auth_hash(hash)
@@ -22,6 +22,10 @@ class User < ActiveRecord::Base
     self.password_reset_sent_at = Time.zone.now
     save!
     ForgotPasswordMailer.ready(self).deliver
+  end
+
+  def admin?
+    CONFIG['admin_emails'] && CONFIG['admin_emails'].include?(email)
   end
 
 end

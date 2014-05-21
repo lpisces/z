@@ -42,6 +42,7 @@
     parent_id: '上级ID'
     path: '路径'
     submit: '提交'
+    root: '根分类'
 
   views:
     pagination:
@@ -53,7 +54,16 @@
   common:
     new: '新增'
     back: '返回'
+    edit: '编辑'
+    show: '展示'
+    create_succeed: '创建成功'
+    update_succeed: '更新成功'
+    destroy_succeed: '删除成功'
+    create_failed: '创建失败'
 
   cpanel:
     title: '后台'
   
+  errors:
+    messages:
+      not_saved: "保存失败"

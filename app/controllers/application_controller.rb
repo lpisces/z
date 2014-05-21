@@ -7,10 +7,10 @@ class ApplicationController < ActionController::Base
 
   protected
 
+
   def login_as(user)
     session[:user_id] = user.id
     @current_user = user
-    debugger
   end
 
   def login_required
@@ -90,6 +90,10 @@ class ApplicationController < ActionController::Base
       expires: 2.weeks.from_now,
       httponly: true
     }
+  end
+
+  def admin_required
+    raise AccessDenied unless current_user.admin?
   end
 
 end

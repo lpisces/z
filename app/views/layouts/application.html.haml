@@ -35,6 +35,9 @@
                     %ul.dropdown-menu
                       %li
                         %a{:href => profile_path}= I18n.t('profile')
+                      - if current_user.admin?
+                        %li
+                          %a{:href => cpanel_path}= I18n.t('cpanel.title')
                       %li.divider
                       %li
                         %a{:href => sign_out_path}= I18n.t('sign_out')
