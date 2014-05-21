@@ -26,6 +26,7 @@ gem 'bootstrap-sass', '~> 2.3.2'
 
 #template
 gem 'haml', '4.0.5'
+gem "haml-rails"
 
 #server
 gem 'thin'
@@ -35,3 +36,13 @@ gem 'meta-tags'
 
 # Paignator
 gem 'kaminari', '~> 0.15.1'
+gem 'kaminari-bootstrap', '~> 0.1.3'
+
+#editor
+gem 'rails_kindeditor'
+
+#search 
+gem "ransack" 
+
+#model
+gem "paranoia", "~> 2.0"

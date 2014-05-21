@@ -1,0 +1,33 @@
+%ul.breadcrumb
+  %li
+    %a{:href => "/cpanel"}= I18n.t('cpanel.title')
+    %span.divider /
+  %li.active= I18n.t("categories.title")
+
+= search_form_for @q, :class => 'form-search' do |f|
+  = f.search_field :name_cont, :class => 'input-medium search-query'
+  %button.btn{:type => "submit"} Search
+
+%table.table.table-condensed.table-bordered.table-hover
+  %tr
+    %th= I18n.t('categories.name')
+    %th= I18n.t('categories.order')
+    /%th= I18n.t('categories.is_parent')
+    /%th= I18n.t('categories.level')
+    %th= I18n.t('categories.path')
+    %th
+
+  - @categories.each do |category|
+    %tr
+      %td= category.name
+      %td= category.order
+      /%td= category.is_parent
+      /%td= category.level
+      %td= category.full_name
+      %td
+        = link_to '<i class="icon-pencil"></i>'.html_safe, edit_category_path(category)
+        = link_to '<i class="icon-remove"></i>'.html_safe, category, :method => :delete, :data => { :confirm => I18n.t('common.confirm') }
+
+= link_to I18n.t('common.new'), new_category_path
+
+= paginate @categories

@@ -32,4 +32,28 @@
   submit: '提交'
   return: '返回'
   invalid_request: '非法请求!'
+
+  categories:
+    title: '分类'
+    name: '分类名称'
+    order: '排序'
+    is_parent: '是否父级'
+    level: '分类级别'
+    parent_id: '上级ID'
+    path: '路径'
+    submit: '提交'
+
+  views:
+    pagination:
+      next: '下一页'
+      last: '末页'
+      first: '首页'
+      previous: '上一页'
+
+  common:
+    new: '新增'
+    back: '返回'
+
+  cpanel:
+    title: '后台'
   

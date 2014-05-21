@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
-  get 'password/reset'
 
   root to: 'home#index'
+
+
+  #cpanel
+  scope '/cpanel' do
+    resources :categories
+  end
+
 
   #account 
   match '/sign_up', to: 'account#new', via: [:get, ]
