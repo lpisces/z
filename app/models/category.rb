@@ -1,5 +1,5 @@
 class Category < ActiveRecord::Base
-  validates :name, uniqueness: true
+  validates :name, uniqueness: true, presence: true, length: { minimum: 2 }
 
   def full_name
     full = name
@@ -13,6 +13,14 @@ class Category < ActiveRecord::Base
       cnt += 1
     end
     full
+  end
+
+  def parent
+      if id = parent_id
+        parent_id = nil
+      else
+        parent = Category.find_by_id(pid)
+      end
   end
 
 end
