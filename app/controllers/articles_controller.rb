@@ -15,6 +15,12 @@ class ArticlesController < ApplicationController
   end
 
   def create
+    @article = Article.where(:title => params[:title], :sub_title => params[:sub_title], :category_id => params[:category_id], :summary => params[:summary]).first_or_create
+
+    if not @article.save
+        return redirect_to @article, notice: I18n.t('common.create_failed') 
+
+      
   end
 
   def index
@@ -26,8 +32,8 @@ class ArticlesController < ApplicationController
   private
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def category_params
-      params.require(:article).permit(:title, :sub_title, :category_id, :summary, :contents)
+    def create_params
+      params.require(:article).permit(:title, :sub_title, :category_id, :summary, :content)
     end
 
 end
