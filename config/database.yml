@@ -49,6 +49,7 @@ test:
 #
 production:
   <<: *default
-  database: z_production
-  username: z
-  password: <%= ENV['Z_DATABASE_PASSWORD'] %>
+  #database: z_production
+  database: z_development
+  #username: z
+  #password: <%= ENV['Z_DATABASE_PASSWORD'] %>

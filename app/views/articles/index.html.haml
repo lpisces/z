@@ -1,0 +1,34 @@
+%ul.breadcrumb
+  %li
+    %a{:href => "/cpanel"}= I18n.t('cpanel.title')
+    %span.divider /
+  %li.active= I18n.t("articles.title")
+
+- if not flash[:notice].nil?
+  .alert
+    %button.close{"data-dismiss" => "alert", :type => "button"} &times;
+    %strong= flash[:notice]
+
+= search_form_for @q, :class => 'form-search' do |f|
+  = f.search_field :title_cont, :class => 'input-medium search-query'
+  %button.btn{:type => "submit"} Search
+
+%table.table.table-condensed.table-bordered.table-hover
+  %tr
+    %th= I18n.t('articles.article_title')
+    %th= I18n.t('articles.category')
+    %th= I18n.t('articles.updated_at')
+    %th
+
+  - @articles.each do |article|
+    %tr
+      %td= article.title
+      %td= article.category
+      %td= article.updated_at
+      %td
+        = link_to '<i class="icon-pencil"></i>'.html_safe, edit_article_path(article)
+        = link_to '<i class="icon-remove"></i>'.html_safe, article, :method => :delete, :data => { :confirm => I18n.t('common.confirm') }
+
+= link_to I18n.t('common.new'), new_article_path
+
+= paginate @articles

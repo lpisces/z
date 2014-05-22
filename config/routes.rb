@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'cpanel/index'
 
   root to: 'home#index'
 
@@ -9,6 +8,8 @@ Rails.application.routes.draw do
   match '/cpanel', to: 'cpanel#index', via: [:get, ]
   scope '/cpanel' do
     resources :categories
+    resources :articles
+    #match 'articles/new', to: 'article#new', via: [:get, ]
   end
 
 

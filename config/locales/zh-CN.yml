@@ -42,7 +42,18 @@
     parent_id: '上级ID'
     path: '路径'
     submit: '提交'
-    root: '根分类'
+    root: '-'
+
+  articles:
+    title: '文章'
+    article_title: '文章标题'
+    sub_title: '副标题'
+    category: '分类'
+    new_category: '新增分类'
+    submit: '提交'
+    summary: '简介'
+    contents: '内容'
+    updated_at: '更新时间'
 
   views:
     pagination:

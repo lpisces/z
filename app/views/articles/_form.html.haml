@@ -1,0 +1,38 @@
+= form_for(@article, :html => {:class => 'form-horizontal'} ) do |f|
+  - if @article.errors.any?
+    .alert.alert-error
+      %button.close{"data-dismiss" => "alert", :type => "button"} x
+      = I18n.t('errors.messages.not_saved', count: @article.errors.count)
+
+  .control-group{:class => ('error' unless @article.errors[:title].empty?)}
+    = f.label :name, I18n.t('articles.article_title'), :class => 'control-label', :style => 'width:80px'
+    .controls{:style => 'margin-left:100px;'}
+      = f.text_field :title, :autofocus => true
+      %span.help-inline= @article.errors[:title].first unless @article.errors[:title].empty?
+
+  .control-group{:class => ('error' unless @article.errors[:sub_title].empty?)}
+    = f.label :name, I18n.t('articles.sub_title'), :class => 'control-label', :style => 'width:80px'
+    .controls{:style => 'margin-left:100px;'}
+      = f.text_field :sub_title, :autofocus => true
+      %span.help-inline= @article.errors[:sub_title].first unless @article.errors[:sub_title].empty?
+
+  .control-group{:class => ('error' unless @article.errors[:category_id].empty?)}
+    = f.label :parent_id, I18n.t('articles.category'), :class => 'control-label', :style => 'width:80px'
+    .controls{:style => 'margin-left:100px;'}
+      = f.select(:category_id, Category.all.map{|c| [c.full_name, c.id] } << [I18n.t('categories.root'), 0])
+      %a.btn.btn-mini.btn-success{:href => new_category_path, :target => '_blank'}= I18n.t('articles.new_category')
+      %span.help-inline= @article.errors[:category_id].first unless @article.errors[:category_id].empty?
+
+  .control-group{:class => ('error' unless @article.errors[:summary].empty?)}
+    = f.label :summary, I18n.t('articles.summary'), :class => 'control-label', :style => 'width:80px'
+    .controls{:style => 'margin-left:100px;'}
+      = f.kindeditor :summary, :width => 800, :height => 150, :simple_mode => true, :window_onload => true
+
+  .control-group{:class => ('error' unless @article.errors[:contents].empty?)}
+    = f.label :contents, I18n.t('articles.contents'), :class => 'control-label', :style => 'width:80px', :window_onload => true
+    .controls{:style => 'margin-left:100px;'}
+      = f.kindeditor :content, :width => 800, :height => 450
+
+  .control-group
+    .controls{:style => 'margin-left:100px;'}
+      = f.submit I18n.t('articles.submit'), :class => 'btn btn-mini btn-success'
