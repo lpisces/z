@@ -7,7 +7,7 @@ class CategoriesController < ApplicationController
   # GET /categories.json
   def index
     @q = Category.search(params[:q])
-    @categories = @q.result(distinct: true).order('id desc').page params[:page]
+    @categories = @q.result.order('parent_id desc, id desc').page params[:page]
   end
 
   # GET /categories/1
@@ -72,6 +72,6 @@ class CategoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def category_params
-      params.require(:category).permit(:name, :order, :parent_id)
+      params.require(:category).permit(:name, :order, :parent_id, :is_parent)
     end
 end

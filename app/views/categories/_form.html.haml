@@ -12,15 +12,18 @@
   .control-group{:class => ('error' unless @category.errors[:order].empty?)}
     = f.label :order, I18n.t('categories.order'), :class => 'control-label', :style => 'width:80px'
     .controls{:style => 'margin-left:100px;'}
-      /= f.number_field :order, :autofocus => true
       = f.select(:order, (0..9).to_a.map{|x| [x, x]})
       %span.help-inline= @category.errors[:order].first unless @category.errors[:order].empty?
   .control-group{:class => ('error' unless @category.errors[:parent_id].empty?)}
     = f.label :parent_id, I18n.t('categories.parent_id'), :class => 'control-label', :style => 'width:80px'
     .controls{:style => 'margin-left:100px;'}
-      /= f.number_field :parent_id, :autofocus => true
-      = f.select(:parent_id, Category.all.map{|c| [c.full_name, c.id] } << [I18n.t('categories.root'), 0])
+      = f.select(:parent_id, Category.where(:is_parent => true).all.map{|c| [c.full_name, c.id] } << [I18n.t('categories.root'), 0])
       %span.help-inline= @category.errors[:parent_id].first unless @category.errors[:parent_id].empty?
+  .control-group{:class => ('error' unless @category.errors[:is_parent].empty?)}
+    = f.label :parent_id, I18n.t('categories.is_parent'), :class => 'control-label', :style => 'width:80px'
+    .controls{:style => 'margin-left:100px;'}
+      = f.check_box :is_parent
+      %span.help-inline= @category.errors[:is_parent].first unless @category.errors[:is_parent].empty?
 
 
   .control-group

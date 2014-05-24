@@ -9,9 +9,12 @@
     %button.close{"data-dismiss" => "alert", :type => "button"} &times;
     %strong= flash[:notice]
 
+
 = search_form_for @q, :class => 'form-search' do |f|
   = f.search_field :name_cont, :class => 'input-medium search-query'
   %button.btn{:type => "submit"} Search
+
+= link_to I18n.t('common.new'), new_category_path
 
 %table.table.table-condensed.table-bordered.table-hover
   %tr

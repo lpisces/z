@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140522111416) do
+ActiveRecord::Schema.define(version: 20140524170129) do
 
   create_table "articles", force: true do |t|
     t.string   "title"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20140522111416) do
     t.integer  "parent_id",  default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_parent",  default: false
   end
 
   create_table "contents", force: true do |t|

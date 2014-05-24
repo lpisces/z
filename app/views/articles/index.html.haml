@@ -22,8 +22,9 @@
 
   - @articles.each do |article|
     %tr
-      %td= article.title
-      %td= article.category
+      %td
+        %a{:href => article_path(article)}= article.title
+      %td= article.category.full_name
       %td= article.updated_at
       %td
         = link_to '<i class="icon-pencil"></i>'.html_safe, edit_article_path(article)

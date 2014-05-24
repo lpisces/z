@@ -61,6 +61,7 @@
       last: '末页'
       first: '首页'
       previous: '上一页'
+      truncate: "..."
 
   common:
     new: '新增'
