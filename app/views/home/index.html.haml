@@ -1,0 +1,67 @@
+#sidebar
+  .dropdown.clearfix
+    %ul.dropdown-menu{:style => 'display:block;min-width:100px;', "aria-labelledby" => "dropdownMenu", :role => "menu"}
+      %li
+        %a{:href => "javascript:void(0)", :tabindex => "-1"}= "<i class='icon-list'></i>  所有分类".html_safe
+      %li.divider
+      = @categories.each do |c|
+        %li.dropdown-submenu
+          %a{:href => "#", :tabindex => "-1"} 电脑办公
+          .dropdown-menu.sub_category{:style => 'padding:10px;min-width:120px;'}
+            %a{:href => '#'} test
+            %a{:href => '#'} test
+/          %ul.dropdown-menu
+/            %li
+/              %a{:href => "#", :tabindex => "-1"} Second level link
+
+
+:css
+  #sidebar{
+    width:100px;
+    height:600px;
+    position:relative;
+    left:-110px;
+    float:left;
+  }
+
+  .sub_category a{
+    float:left;
+    width:60px;
+    text-align:center;
+    color: #444;
+    text-decoration: none;
+  }
+  .sub_category a:hover{
+    color: #e46365;
+  }
+
+  #center{
+    width: 990px;
+    margin: 0 auto;
+    border: 1px solid red;
+    height: 800px;
+  }
+
+:javascript
+  $(function() {
+    var $sidebar   = $("#sidebar"), 
+        $window    = $(window),
+        offset     = $sidebar.offset(),
+        topPadding = 50;
+
+    $window.scroll(function() {
+        if ($window.scrollTop() > offset.top) {
+            $sidebar.stop().animate({
+                marginTop: $window.scrollTop() - offset.top + topPadding
+            });
+        } else {
+            $sidebar.stop().animate({
+                marginTop: 0
+            });
+        }
+    });
+  }); 
+
+
+
+
