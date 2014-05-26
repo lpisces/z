@@ -4,16 +4,14 @@
       %li
         %a{:href => "javascript:void(0)", :tabindex => "-1"}= "<i class='icon-list'></i>  所有分类".html_safe
       %li.divider
-      = @categories.each do |c|
-        %li.dropdown-submenu
-          %a{:href => "#", :tabindex => "-1"} 电脑办公
-          .dropdown-menu.sub_category{:style => 'padding:10px;min-width:120px;'}
-            %a{:href => '#'} test
-            %a{:href => '#'} test
-/          %ul.dropdown-menu
-/            %li
-/              %a{:href => "#", :tabindex => "-1"} Second level link
 
+      - @categories.each do |c|
+        %li.dropdown-submenu
+          %a{:href => "#", :tabindex => "-1"}= c.name
+          .dropdown-menu.sub_category{:style => 'padding:10px;min-width:200px;'}
+            - c.children.each do |child|
+              %a{:href => '#'}= child.name
+      %li
 
 :css
   #sidebar{
@@ -26,7 +24,9 @@
 
   .sub_category a{
     float:left;
-    width:60px;
+    width:80px;
+    padding:5px 10px;
+    height:30px;
     text-align:center;
     color: #444;
     text-decoration: none;

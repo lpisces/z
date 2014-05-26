@@ -1,6 +1,10 @@
 class Category < ActiveRecord::Base
   validates :name, uniqueness: true, presence: true, length: { minimum: 2 }
 
+  def children
+    Category.where(:parent_id => id).all
+  end
+
   def full_name
     full = name
     pid = parent_id 
