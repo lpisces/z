@@ -1,0 +1,20 @@
+%ul.breadcrumb
+  %li
+    %a{:href => "/cpanel"}= I18n.t('cpanel.title')
+    %span.divider /
+  %li
+    %a{:href => articles_path}= I18n.t("articles.title")
+    %span.divider /
+  %li.active= I18n.t('common.show')
+
+= link_to I18n.t('common.back'), articles_path
+= link_to I18n.t('common.edit'), edit_article_path(@article)
+
+%h4= @article.title
+%h5= @article.sub_title
+
+.content= @article.content.html_safe
+
+.push{:style => 'margin:10px 0;height:10px;'}
+= link_to I18n.t('common.back'), articles_path
+= link_to I18n.t('common.edit'), edit_article_path(@article)

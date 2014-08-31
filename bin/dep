@@ -1,0 +1,3 @@
+#! /bin/sh
+
+sudo yum install mysql-devel mysql-server mysql nodejs -y

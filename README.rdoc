@@ -1,0 +1,3 @@
+== README
+
+This App is powered by ROR and intended to be a clone of UMENG for Haodou.

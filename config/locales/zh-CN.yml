@@ -1,0 +1,81 @@
+--- 
+"zh-CN":
+  homepage: "首页"
+  sign_up: "注册"
+  sign_in: '登录'
+  sign_out: '退出'
+  profile: '个人信息'
+  email: '电子邮件'
+  nick: '昵称'
+  nick_requirement: '昵称长度为4 ~ 32个字节'
+  update_profile_succeed: '更新信息成功！'
+  update_profile_failed: '更新信息失败！'
+  password: '密码'
+  password_confirmation: '确认密码'
+  password_reset: '重置密码'
+  password_reset_msg: '请使用如下链接重置密码'
+  reset_password_user_not_exists: '该用户不存在!'
+  reset_password_invalid_token: '非法TOKEN!'
+  reset_password_send_mail_succeed: '重置密码邮件已经发送，请注意查收！'
+  reset_password_succeed: '重置密码成功！'
+  reset_password_falied: '重置密码失败，请重试！'
+  sorry_for_interrupt: '如果不是您本人操作,请忽略。'
+  email_from: '本邮件发送自'
+  sign_in_failed: '登录失败'
+  sign_up_user_exists: '注册失败, 用户已经存在'
+  forgot_password: '忘记密码'
+  if_have_account: "如果已有账号"
+  if_have_no_account: "如果没有账号"
+  if_forgot_password: "如果忘记密码"
+  reset_password_by_mail: "通过邮件找回密码"
+  please: "请"
+  submit: '提交'
+  return: '返回'
+  invalid_request: '非法请求!'
+
+  categories:
+    title: '分类'
+    name: '分类名称'
+    order: '排序'
+    is_parent: '是否父级'
+    level: '分类级别'
+    parent_id: '上级ID'
+    path: '路径'
+    submit: '提交'
+    root: '-'
+
+  articles:
+    title: '文章'
+    article_title: '文章标题'
+    sub_title: '副标题'
+    category: '分类'
+    new_category: '新增分类'
+    submit: '提交'
+    summary: '简介'
+    contents: '内容'
+    updated_at: '更新时间'
+
+  views:
+    pagination:
+      next: '下一页'
+      last: '末页'
+      first: '首页'
+      previous: '上一页'
+      truncate: "..."
+
+  common:
+    new: '新增'
+    back: '返回'
+    edit: '编辑'
+    show: '展示'
+    create_succeed: '创建成功'
+    update_succeed: '更新成功'
+    destroy_succeed: '删除成功'
+    create_failed: '创建失败'
+
+  cpanel:
+    title: '后台'
+  
+  errors:
+    messages:
+      not_saved: "保存失败"

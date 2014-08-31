@@ -1,0 +1,61 @@
+!!!
+%html
+  %head
+    %title= CONFIG['title']
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+
+    .container-fluid 
+      .navbar.navbar-fixed-top
+        .navbar-inner
+          .container
+            %button.btn.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse", :type => "button"}
+              %span.icon-bar
+              %span.icon-bar
+              %span.icon-bar
+            %a.brand{:href => "/"}= CONFIG['title']
+            .nav-collapse.collapse
+              %ul.nav
+                %li
+                  /%a{:href => "/"} 首页
+              %ul.nav.pull-right
+                - if not login?
+                  %li
+                    %a{:href => sign_in_path}= I18n.t('sign_in')
+                  %li
+                    %a{:href => sign_up_path}= I18n.t('sign_up')
+                - else
+                  %li.dropdown
+                    %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                      = current_user.nick.nil? ? current_user.email : current_user.nick
+                      %b.caret
+                    %ul.dropdown-menu
+                      %li
+                        %a{:href => profile_path}= I18n.t('profile')
+                      %li.divider
+                      %li
+                        %a{:href => sign_out_path}= I18n.t('sign_out')
+              %ul.nav.pull-right
+                - if  login? and current_user.admin?
+                  %li.dropdown
+                    %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                      = I18n.t('cpanel.title')
+                      %b.caret
+                    %ul.dropdown-menu
+                      %li
+                        /%a{:href => articles_path}= I18n.t('articles.title')
+                      %li
+                        %a{:href => categories_path}= I18n.t('categories.title')
+                
+    .container{:style => 'width:990px;mragin:0 auto;'}
+      #wrapper{:style => 'margin-top:50px;'}
+        = yield 
+        #push
+      #footer
+        .container
+          %p.muted.credit
+            Powered by 
+            %a{:href => "http://rubyonrails.org/"} Ruby on Rails

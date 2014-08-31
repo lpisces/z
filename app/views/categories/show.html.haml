@@ -1,0 +1,30 @@
+%ul.breadcrumb
+  %li
+    %a{:href => "/cpanel"}= I18n.t('cpanel.title')
+    %span.divider /
+  %li
+    %a{:href => categories_path}= I18n.t("categories.title")
+    %span.divider /
+  %li.active= I18n.t('common.show')
+
+- if not flash[:notice].nil?
+  .alert
+    %button.close{"data-dismiss" => "alert", :type => "button"} &times;
+    %strong= flash[:notice]
+
+%table.table.table-condensed.table-bordered.table-hover
+  %tr
+    %th= I18n.t('categories.name')
+    %td= @category.name
+  %tr
+    %th= I18n.t('categories.order')
+    %td= @category.order
+  %tr
+    %th= I18n.t('categories.parent_id')
+    %td= @category.parent_id
+  
+= link_to I18n.t('common.edit'), edit_category_path(@category)
+\|
+= link_to I18n.t('common.back'), categories_path
+\|
+= link_to I18n.t('common.new'), new_category_path

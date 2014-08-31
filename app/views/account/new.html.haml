@@ -1,0 +1,78 @@
+%ul.breadcrumb
+  %li
+    %a{:href => '/'}= I18n.t('homepage')
+    %span.divider /
+  %li.active= I18n.t('sign_up')
+
+- if not flash[:notice].nil?
+  .alert
+    %button.close{"data-dismiss" => "alert", :type => "button"} &times;
+    %strong= flash[:notice]
+
+= form_tag '/auth/identity/register', :class => 'form-horizontal', :id => 'signup' do
+  .control-group
+    %label.control-label{:for => "email"}= I18n.t('email')
+    .controls
+      %input#email{:placeholder => "Email", :type => "text", :name => 'email'}
+  .control-group
+    %label.control-label{:for => "password"}= I18n.t('password')
+    .controls
+      %input#password{:placeholder => I18n.t('password'), :type => "password", :name => 'password'}
+  .control-group
+    %label.control-label{:for => "password_confirmation"}= I18n.t('password_confirmation')
+    .controls
+      %input#password_confirmation{:placeholder => I18n.t('password_confirmation'), :type => "password", :name => 'password_confirmation'}
+  .control-group
+    .controls
+      %button.btn.btn-mini.btn-success{:type => "submit"}= I18n.t('sign_up')
+  .control-group
+    .controls
+      %span
+        = "<i class='icon-info-sign'></i>".html_safe
+        = (I18n.t('if_have_account') + "," + I18n.t("please")).html_safe
+        %a.btn.btn-mini{:href => sign_in_path}= I18n.t('sign_in')
+      %br/
+      %br/
+      %span
+        = "<i class='icon-info-sign'></i>".html_safe
+        = (I18n.t('if_forgot_password') + "," + I18n.t("please")).html_safe
+        %a.btn.btn-mini{:href => forgot_password_path}= I18n.t('reset_password_by_mail')
+
+:css
+  label.error{
+    color:red;
+  }
+
+
+:javascript
+  $(document).ready(function() {
+    $("#signup").validate({
+      rules: {
+        password: {
+        	required: true,
+        	minlength: 8
+        },
+        password_confirmation: {
+        	required: true,
+        	minlength: 8,
+        	equalTo: "#password"
+        },
+        email: {
+        	required: true,
+        	email: true
+        },
+      },
+      messages: {
+        password: {
+        	required: "请输入密码",
+        	minlength: "密码必须大于8位"
+        },
+        password_confirmation: {
+        	required: "请输入密码",
+        	minlength: "密码必须大于8位",
+        	equalTo: "密码不一致"
+        },
+        email: "请输入合法的邮件地址",
+      }   
+    }); 
+  });

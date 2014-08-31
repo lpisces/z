@@ -1,0 +1,20 @@
+%ul.breadcrumb
+  %li
+    %a{:href => '/'}= I18n.t('homepage')
+    %span.divider /
+  %li.active= I18n.t('forgot_password')
+
+= form_tag update_password_path, :class => 'form-horizontal'  do
+  
+  %input#password_reset_token{:type => "hidden", :name => 'password_reset_token', :value => @user.password_reset_token}
+  .control-group
+    %label.control-label{:for => "password"}= I18n.t('password')
+    .controls
+      %input#password{:placeholder => I18n.t('password'), :type => "password", :name => 'password'}
+  .control-group
+    %label.control-label{:for => "password_confirmation"}= I18n.t('password_confirmation')
+    .controls
+      %input#password_confirmation{:placeholder => I18n.t('password_confirmation'), :type => "password", :name => 'password_confirmation'}
+  .control-group
+    .controls
+      %button.btn.btn-mini.btn-success{:type => "submit"}= I18n.t('submit')

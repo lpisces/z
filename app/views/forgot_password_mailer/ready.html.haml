@@ -1,0 +1,11 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+  %body
+    %p
+      = I18n.t('password_reset_msg')
+    %p
+      %a{:href => @reset_password_url}= @reset_password_url
+    %br/
+    %span= I18n.t('email_from') + CONFIG['title'] + ',' +I18n.t('sorry_for_interrupt')

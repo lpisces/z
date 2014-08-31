@@ -1,0 +1,51 @@
+%ul.breadcrumb
+  %li
+    %a{:href => '/'}= I18n.t('homepage')
+    %span.divider /
+  %li.active= I18n.t('profile')
+
+- if not flash[:notice].nil?
+  .alert
+    %button.close{"data-dismiss" => "alert", :type => "button"} &times;
+    %strong= flash[:notice]
+
+= form_tag '/update_profile', :class => 'form-horizontal', :id => 'update_profile' do
+  .control-group
+    %label.control-label{:for => "email"}= I18n.t('email')
+    .controls
+      %input#email{:placeholder => "Email", :type => "text", :name => 'email', :disabled => 'disabled', :value => @user.email}
+  .control-group
+    %label.control-label{:for => "nick"}= I18n.t('nick')
+    .controls
+      %input#password{:placeholder => I18n.t('nick'), :type => "text", :name => 'nick', :value => @user.nick}
+      /%span.help-inline= I18n.t('nick_requirement')
+  .control-group
+    .controls
+      %button.btn.btn-mini.btn-success{:type => "submit"}= I18n.t('submit')
+
+
+:css
+  label.error{
+    color:red;
+  }
+
+
+:javascript
+  $(document).ready(function() {
+    $("#update_profile").validate({
+      rules: {
+        nick: {
+        	required: true,
+        	minlength: 4,
+        	maxlength: 32,
+        },
+      },
+      messages: {
+        nick: {
+        	required: "请输入昵称",
+        	minlength: "密码必须大于4位",
+        	maxlength: "密码必须小于32位"
+        },
+      }   
+    }); 
+  });

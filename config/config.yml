@@ -1,0 +1,21 @@
+default: &default
+  title: Z
+  host: l.com:3000
+  email_from: noreply@projetc-z.org
+
+development:
+  <<: *default
+  admin_emails:
+    - iamalazyrat@gmail.com
+
+test:
+  <<: *default
+  admin_emails:
+    - admin@example.com
+
+production:
+  <<: *default
+
+  admin_emails:
+    # - admin@example.com
+    - iamalazyrat@gmail.com
