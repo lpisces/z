@@ -1,0 +1,26 @@
+= form_for(@app, :html => {:class => 'form-horizontal'} ) do |f|
+  - if @app.errors.any?
+    .alert.alert-error
+      %button.close{"data-dismiss" => "alert", :type => "button"} x
+      = I18n.t('errors.messages.not_saved', count: @app.errors.count)
+
+  .control-group{:class => ('error' unless @app.errors[:name].empty?)}
+    = f.label :name, I18n.t('apps.name'), :class => 'control-label', :style => 'width:80px'
+    .controls{:style => 'margin-left:100px;'}
+      = f.text_field :name, :autofocus => true
+      %span.help-inline= @app.errors[:name].first unless @app.errors[:name].empty?
+  .control-group{:class => ('error' unless @app.errors[:app_id].empty?)}
+    = f.label :app_id, I18n.t('apps.app_id'), :class => 'control-label', :style => 'width:80px'
+    .controls{:style => 'margin-left:100px;'}
+      = f.number_field :app_id, :autofocus => true
+      %span.help-inline= @app.errors[:app_id].first unless @app.errors[:app_id].empty?
+  .control-group{:class => ('error' unless @app.errors[:app_type].empty?)}
+    = f.label :app_type, I18n.t('apps.app_type'), :class => 'control-label', :style => 'width:80px'
+    .controls{:style => 'margin-left:100px;'}
+      = f.select(:app_type, {"android" => 0, "ios" => 1}) 
+      %span.help-inline= @app.errors[:app_type].first unless @app.errors[:app_type].empty?
+
+
+  .control-group
+    .controls{:style => 'margin-left:100px;'}
+      = f.submit I18n.t('apps.submit'), :class => 'btn btn-mini btn-success'

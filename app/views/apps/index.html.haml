@@ -1,0 +1,24 @@
+%ul.breadcrumb
+  %li
+    %a{:href => "/cpanel"}= I18n.t('cpanel.title')
+    %span.divider /
+  %li.active= I18n.t("apps.title")
+
+
+%table.table.table-condensed.table-bordered.table-hover
+  %tr
+    %th= I18n.t('apps.name')
+    %th= I18n.t('apps.app_id')
+    %th= I18n.t('apps.app_type')
+    %th
+
+  - @apps.each do |app|
+    %tr
+      %td= app.name
+      %td= app.app_id
+      %td= app.app_type
+      %td
+        = link_to '<i class="icon-pencil"></i>'.html_safe, edit_app_path(app)
+        = link_to '<i class="icon-remove"></i>'.html_safe, app, :method => :delete, :data => { :confirm => I18n.t('common.confirm') }
+
+= link_to I18n.t('common.new'), new_app_path

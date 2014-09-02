@@ -1,0 +1,23 @@
+%ul.breadcrumb
+  %li
+    %a{:href => "/cpanel"}= I18n.t('cpanel.title')
+    %span.divider /
+  %li
+    %a{:href => apps_path}= I18n.t("apps.title")
+    %span.divider /
+  %li.active= I18n.t('common.show')
+
+%table.table.table-condensed.table-bordered.table-hover
+  %tr
+    %th= I18n.t('apps.name')
+    %td= @app.name
+  %tr
+    %th= I18n.t('apps.app_id')
+    %td= @app.app_id
+  %tr
+    %th= I18n.t('apps.app_type')
+    %td= @app.app_type
+  
+= link_to I18n.t('common.edit'), edit_app_path(@app)
+\|
+= link_to I18n.t('common.back'), apps_path
