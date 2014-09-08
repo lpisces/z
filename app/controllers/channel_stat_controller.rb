@@ -4,12 +4,11 @@ class ChannelStatController < ApplicationController
   end
 
   def app
-    @params = params.permit(:app_id, :channel_id, :version_id, :channel_group)
+    @params = params.permit(:app_id, :channel_id, :version_id, :channel_group, :statis_date)
     @apps = App.all
     @app = App.where("app_id = ?", @params[:app_id]).first
     @index_names = ["日新增用户数", "日留存用户数", "累计用户"]
-    @today = Date.today.prev_day.strftime("%Y-%m-%d")
-	@today = "2014-09-03"
+    @today = params[:statis_date].nil? ? Date.today.prev_day.strftime("%Y-%m-%d") : params[:statis_date]
     @today_stat = day_report(@app.app_id, @today)
 
     @channels = ["全部", "积分墙", "非积分墙"]
@@ -21,8 +20,8 @@ class ChannelStatController < ApplicationController
 	  @q = @q.where("channel_id not like '%#%'")
     end
     @index_names2 = ["日新增用户数", "日活跃用户数", "日留存用户数", "累计用户"]
-    @q.where("channel_id like '%?%'", params[:channel_id]) if !params[:channel_id].nil?
-    @q.where("version_id like '%?%'", params[:version_id]) if !params[:version_id].nil?
+    @q = @q.where("channel_id like '%#{params[:channel_id]}%'") if !params[:channel_id].nil?
+    @q = @q.where("version_id like '%#{params[:version_id]}%'") if !params[:version_id].nil?
     @rows = @q.where("index_name in (?)", @index_names2).order("index_value desc")
     @real_rows = {}
     @rows.each do |r|

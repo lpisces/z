@@ -37,6 +37,7 @@
     %span= "渠道"
     %input.input-medium{:type => "text", :name=> "channel_id"}
     %input{:type => "hidden", :name => "app_id", :value => @app.app_id}
+    %input{:type => "hidden", :name => "statis_date", :value => @today}
     %select{:name => "channel_group"}
       - @channels.each_index do |c|
         %option{:value => c}= @channels[c]
