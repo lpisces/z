@@ -55,6 +55,16 @@
     date: "日期"
     global_trend: "整体趋势"
     brief: "概况"
+  channel_stats:
+    title: "渠道统计"
+    submit: '提交'
+    date: "日期"
+    day_increase_user: "日新增用户"
+    day_remain_user: "日留存用户"
+    day_active_user: "日活跃用户"
+    day_total_user: "累计用户"
+    version_id: "版本"
+    channel_id: "渠道"
 
   categories:
     title: '分类'

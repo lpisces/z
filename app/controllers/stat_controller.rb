@@ -7,7 +7,6 @@ class StatController < ApplicationController
     @params = params.permit(:app_id)
     @apps = App.all
     @index_names = ["日新增用户数", "日活跃用户数", "日平均单次使用时长", "日启动次数", "累计用户"]
-    @index_values = []
     @app = App.where("app_id = ?", @params[:app_id]).first
     @today = Date.today.prev_day.strftime("%Y-%m-%d")
     @yesterday = Date.today.prev_day.prev_day.strftime("%Y-%m-%d")

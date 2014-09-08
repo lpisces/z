@@ -8,7 +8,7 @@
   %li.active
     %span= @app.name
 
-.search{:style => "width:100%;height:100px;"}
+.search{:style => "width:100%;height:50px;"}
   %form.form-search.pull-right{:method => "GET", :action => "/stat/app"}
     %select{:name => "app_id"}
       - @apps.each do |app|

@@ -1,0 +1,60 @@
+%ul.breadcrumb
+  %li
+    %a{:href => '/'}= I18n.t('homepage')
+    %span.divider /
+  %li.active= I18n.t('channel_stats.title')
+
+.search{:style => "width:100%;height:50px;"}
+  %form.form-search.pull-right{:method => "GET", :action => "/channel_stat/app"}
+    %select{:name => "app_id"}
+      - @apps.each do |app|
+        %option{:value => app.app_id}= app.name
+    %button.btn{:type => "submit"}= I18n.t("stats.submit")
+
+
+%table.table.table-bordered
+  %tr
+    %th
+    %th{:style => "width:30%;"}= I18n.t("channel_stats.day_increase_user")
+    %th{:style => "width:30%;"}= I18n.t("channel_stats.day_remain_user")
+    %th{:style => "width:30%;"}= I18n.t("channel_stats.day_total_user")
+  %tr
+    %td= "总量"
+    %td= @today_stat[:day_increase_user_num]
+    %td= @today_stat[:day_remain_user_num]
+    %td= @today_stat[:day_total_user_num]
+  - if @app.app_id == 4
+    %tr
+      %td= "积分墙"
+      %td= @today_stat[:day_increase_user_num_channel]
+      %td= @today_stat[:day_remain_user_num_channel]
+      %td= @today_stat[:day_total_user_num_channel]
+.clear{:style => "margin-top:20px;"}
+.search{:style => "width:100%;height:50px;"}
+  %form.form-search.pull-right{:method => "GET", :action => "/channel_stat/app"}
+    %span= "版本"
+    %input.input-medium{:type => "text", :name=> "version_id"}
+    %span= "渠道"
+    %input.input-medium{:type => "text", :name=> "channel_id"}
+    %input{:type => "hidden", :name => "app_id", :value => @app.app_id}
+    %select{:name => "channel_group"}
+      - @channels.each_index do |c|
+        %option{:value => c}= @channels[c]
+    %button.btn{:type => "submit"}= I18n.t("stats.submit")
+
+%table.table.table-bordered
+  %tr
+    %th{:style => "width:25%;"}= I18n.t("channel_stats.channel_id")
+    %th{:style => "width:15%;"}= I18n.t("channel_stats.version_id")
+    %th{:style => "width:15%;"}= I18n.t("channel_stats.day_increase_user")
+    %th{:style => "width:15%;"}= I18n.t("channel_stats.day_active_user")
+    %th{:style => "width:15%;"}= I18n.t("channel_stats.day_remain_user")
+    %th{:style => "width:15%;"}= I18n.t("channel_stats.day_total_user")
+  - @real_rows.each do |k, v|
+    %tr
+      %td= k.split("\001")[0]
+      %td= k.split("\001")[1]
+      %td= v["日新增用户数"]
+      %td= v["日活跃用户数"]
+      %td= v["日留存用户数"]
+      %td= v["累计用户"]
