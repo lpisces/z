@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
 
 
+
+  get 'channel_stat/index'
+
+  get 'channel_stat/app'
+
   resources :apps
 
   get 'home/index'
@@ -31,5 +36,9 @@ Rails.application.routes.draw do
   match '/auth/:provider/callback', to: 'session#create', via: [:post, :get]
   match '/profile', to: 'account#profile', via: [:get, ]
   match '/update_profile', to: 'account#update_profile', via: [:post, ]
+
+  #stat 
+  match 'stat/index', to: 'stat#index', via: [:get, ]
+  match 'stat/app', to: 'stat#app', via: [:get, ]
 
 end

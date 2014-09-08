@@ -16,4 +16,5 @@
 //= require turbolinks
 //= require bootstrap
 //= require jquery.validate
+//= require echarts-plain-map
 //= require_tree .

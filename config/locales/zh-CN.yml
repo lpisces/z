@@ -41,6 +41,21 @@
     app_id: '应用ID'
     submit: '提交'
 
+  stats:
+    title: "应用统计"
+    submit: '提交'
+    day_increase_user: "日新增用户"
+    day_active_user: "日活跃用户"
+    day_increase_user_percent: "日新增用户占比"
+    day_boot_num: "启动次数"
+    day_avg_use_time:  "日平均单次使用时长"
+    day_7day_active_user_num: "过去7天活跃用户"
+    day_30day_active_user_num: "过去30天活跃用户"
+    day_total_user_num: "累计用户"
+    date: "日期"
+    global_trend: "整体趋势"
+    brief: "概况"
+
   categories:
     title: '分类'
     name: '分类名称'

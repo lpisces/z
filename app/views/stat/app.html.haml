@@ -1,0 +1,216 @@
+%ul.breadcrumb
+  %li
+    %a{:href => '/'}= I18n.t('homepage')
+    %span.divider /
+  %li
+    %a{:href => '/stat/index'}= I18n.t('stats.title')
+    %span.divider /
+  %li.active
+    %span= @app.name
+
+.search{:style => "width:100%;height:100px;"}
+  %form.form-search.pull-right{:method => "GET", :action => "/stat/app"}
+    %select{:name => "app_id"}
+      - @apps.each do |app|
+        - if app.app_id == @app.app_id
+          %option{:value => app.app_id, :selected => "selected"}= app.name
+        - else
+          %option{:value => app.app_id}= app.name
+    %button.btn{:type => "submit"}= I18n.t("stats.submit")
+
+%h3= I18n.t('stats.brief') 
+%table.table.table-bordered
+  %tr
+    %th{:style => "width:15%;"}= I18n.t("stats.date")
+    %th{:style => "width:15%;"}= I18n.t("stats.day_increase_user")
+    %th{:style => "width:15%;"}= I18n.t("stats.day_active_user")
+    %th{:style => "width:15%;"}= I18n.t("stats.day_increase_user_percent")
+    %th{:style => "width:20%;"}= I18n.t("stats.day_boot_num")
+    %th{:style => "width:20%;"}= I18n.t("stats.day_avg_use_time")
+  %tr
+    %td= @today
+    %td= @today_stat[:day_increase_user_num]
+    %td= @today_stat[:day_active_user_num]
+    %td= @today_stat[:day_increase_user_percent]
+    %td= @today_stat[:day_boot_num]
+    %td= @today_stat[:day_avg_use_time]
+  %tr
+    %td= @yesterday
+    %td= @yesterday_stat[:day_increase_user_num]
+    %td= @yesterday_stat[:day_active_user_num]
+    %td= @yesterday_stat[:day_increase_user_percent]
+    %td= @yesterday_stat[:day_boot_num]
+    %td= @yesterday_stat[:day_avg_use_time]
+
+%table.table.table-bordered
+  %tr
+    %th{:style => "width:30%;"}= I18n.t("stats.day_7day_active_user_num")
+    %th{:style => "width:30%;"}= I18n.t("stats.day_30day_active_user_num")
+    %th{:style => "width:40%;"}= I18n.t("stats.day_total_user_num")
+  %tr
+    %td= @today_stat[:day_7day_active_user_num]
+    %td= @today_stat[:day_30day_active_user_num]
+    %td= @today_stat[:day_total_user_num]
+    
+%h3= I18n.t("stats.global_trend")
+#chart1{:style => "height:400px;"}
+#chart2{:style => "height:400px;"}
+#chart3{:style => "height:400px;"}
+#chart4{:style => "height:400px;"}
+#chart5{:style => "height:400px;"}
+:ruby
+  haml_io.puts "<script>"
+  index_names = @index_names.empty? ? "[]" : "['" + @index_names.join("','") + "']"
+  days = @days.empty? ? "[]" : "['" + @days.reverse.join("','") + "']"
+  haml_io.puts "var index_names = " + index_names
+  haml_io.puts "var days = " + days
+  series = []
+  @index_names.each_index do |i|
+    data = @index_values[i].empty? ? "[]" : "['" + @index_values[i].reverse.join("','") + "']"
+    series.push "{name:'#{@index_names[i]}', type:'line', stack:'总量', data:#{data}}"
+  end
+  haml_io.puts "series_data = [" + series.join(",") + "]"
+  haml_io.puts "</script>"
+
+:javascript
+    // 基于准备好的dom，初始化echarts图表
+  var myChart1 = echarts.init(document.getElementById('chart1')); 
+  option = {
+    tooltip : {
+        trigger: 'axis'
+    },
+    legend: {
+        data: [index_names[0]]
+    },
+    toolbox: {
+        show : true,
+    },
+    calculable : true,
+    xAxis : [
+        {
+            type : 'category',
+            boundaryGap : false,
+            data : days
+        }
+    ],
+    yAxis : [
+        {
+            type : 'value'
+        }
+    ],
+    series : [series_data[0]]
+  };  
+  myChart1.setOption(option);  
+
+
+  var myChart2 = echarts.init(document.getElementById('chart2')); 
+  option = {
+    tooltip : {
+        trigger: 'axis'
+    },
+    legend: {
+        data: [index_names[1]]
+    },
+    toolbox: {
+        show : true,
+    },
+    calculable : true,
+    xAxis : [
+        {
+            type : 'category',
+            boundaryGap : false,
+            data : days
+        }
+    ],
+    yAxis : [
+        {
+            type : 'value'
+        }
+    ],
+    series : [series_data[1]]
+  };  
+  myChart2.setOption(option);  
+
+  var myChart3 = echarts.init(document.getElementById('chart3')); 
+  option = {
+    tooltip : {
+        trigger: 'axis'
+    },
+    legend: {
+        data: [index_names[2]]
+    },
+    toolbox: {
+        show : true,
+    },
+    calculable : true,
+    xAxis : [
+        {
+            type : 'category',
+            boundaryGap : false,
+            data : days
+        }
+    ],
+    yAxis : [
+        {
+            type : 'value'
+        }
+    ],
+    series : [series_data[2]]
+  };  
+  myChart3.setOption(option);  
+
+  var myChart4 = echarts.init(document.getElementById('chart4')); 
+  option = {
+    tooltip : {
+        trigger: 'axis'
+    },
+    legend: {
+        data: [index_names[3]]
+    },
+    toolbox: {
+        show : true,
+    },
+    calculable : true,
+    xAxis : [
+        {
+            type : 'category',
+            boundaryGap : false,
+            data : days
+        }
+    ],
+    yAxis : [
+        {
+            type : 'value'
+        }
+    ],
+    series : [series_data[3]]
+  };  
+  myChart4.setOption(option);  
+
+  var myChart5 = echarts.init(document.getElementById('chart5')); 
+  option = {
+    tooltip : {
+        trigger: 'axis'
+    },
+    legend: {
+        data: [index_names[4]]
+    },
+    toolbox: {
+        show : true,
+    },
+    calculable : true,
+    xAxis : [
+        {
+            type : 'category',
+            boundaryGap : false,
+            data : days
+        }
+    ],
+    yAxis : [
+        {
+            type : 'value'
+        }
+    ],
+    series : [series_data[4]]
+  };  
+  myChart5.setOption(option);  
