@@ -1,0 +1,36 @@
+= form_for(@cpanel_component, :html => {:class => 'form-horizontal'} ) do |f|
+  - if @cpanel_component.errors.any?
+    .alert.alert-error
+      %button.close{"data-dismiss" => "alert", :type => "button"} x
+      = I18n.t('errors.messages.not_saved', count: @cpanel_component.errors.count)
+
+  .control-group{:class => ('error' unless @cpanel_component.errors[:component].empty?)}
+    = f.label :component, I18n.t('cpanel_components.component'), :class => 'control-label', :style => 'width:80px'
+    .controls{:style => 'margin-left:100px;'}
+      = f.text_field :component, :autofocus => true
+      %span.help-inline= @cpanel_component.errors[:component].first unless @cpanel_component.errors[:component].empty?
+  .control-group{:class => ('error' unless @cpanel_component.errors[:sub].empty?)}
+    = f.label :sub, I18n.t('cpanel_components.sub'), :class => 'control-label', :style => 'width:80px'
+    .controls{:style => 'margin-left:100px;'}
+      = f.text_field :sub, :autofocus => true
+      %span.help-inline= @cpanel_component.errors[:sub].first unless @cpanel_component.errors[:sub].empty?
+  .control-group{:class => ('error' unless @cpanel_component.errors[:controller].empty?)}
+    = f.label :controller, I18n.t('cpanel_components.controller'), :class => 'control-label', :style => 'width:80px'
+    .controls{:style => 'margin-left:100px;'}
+      = f.text_field :controller, :autofocus => true
+      %span.help-inline= @cpanel_component.errors[:controller].first unless @cpanel_component.errors[:controller].empty?
+  .control-group{:class => ('error' unless @cpanel_component.errors[:action].empty?)}
+    = f.label :action, I18n.t('cpanel_components.action'), :class => 'control-label', :style => 'width:80px'
+    .controls{:style => 'margin-left:100px;'}
+      = f.text_field :action, :autofocus => true
+      %span.help-inline= @cpanel_component.errors[:action].first unless @cpanel_component.errors[:action].empty?
+  .control-group{:class => ('error' unless @cpanel_component.errors[:status].empty?)}
+    = f.label :status, I18n.t('cpanel_components.status'), :class => 'control-label', :style => 'width:80px'
+    .controls{:style => 'margin-left:100px;'}
+      = f.check_box :status, :autofocus => true
+      %span.help-inline= @cpanel_component.errors[:status].first unless @cpanel_component.errors[:status].empty?
+
+
+  .control-group
+    .controls{:style => 'margin-left:100px;'}
+      = f.submit I18n.t('cpanel_components.submit'), :class => 'btn btn-mini btn-success'

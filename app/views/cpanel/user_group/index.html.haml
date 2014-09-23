@@ -1,0 +1,19 @@
+%ul.breadcrumb
+  %li
+    %a{:href => "/cpanel"}= I18n.t('cpanel.title')
+    %span.divider /
+  %li.active= I18n.t("cpanel_user_group.title")
+
+%h4= I18n.t("cpanel_users.title")
+.users_info
+  = I18n.t("cpanel.already_have") + @cpanel_users.size.to_s + I18n.t("cpanel.user_unit") + I18n.t("cpanel.user") + "."
+  .cmd{:style => "padding:10px;"}
+    = link_to I18n.t('cpanel.users_index'), cpanel_users_path
+    = link_to I18n.t('cpanel.users_new'), new_cpanel_user_path
+
+%h4= I18n.t("cpanel_groups.title")
+.group_info
+  = I18n.t("cpanel.already_have") + @cpanel_groups.size.to_s + I18n.t("cpanel.group_unit") + I18n.t("cpanel.group") + "."
+  .cmd{:style => "padding:10px;"}
+    = link_to I18n.t('cpanel.groups_index'), cpanel_groups_path
+    = link_to I18n.t('cpanel.groups_new'), new_cpanel_group_path

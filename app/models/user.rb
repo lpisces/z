@@ -2,8 +2,9 @@ class User < ActiveRecord::Base
 
   validates :email, uniqueness: true
   validates_format_of :email, :with => /\A[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,}\z/i
-  #validates :nick, uniqueness: true, length: {maximum: 32, minimum: 4}
+  validates :nick, uniqueness: true, length: {maximum: 32, minimum: 2}
   has_many :authentications
+  has_and_belongs_to_many :groups
 
   def self.find_or_create_from_auth_hash(hash)
     @user = self.where(email: hash['info']['email']).first_or_create
@@ -25,7 +26,19 @@ class User < ActiveRecord::Base
   end
 
   def admin?
-    CONFIG['admin_emails'] && CONFIG['admin_emails'].include?(email)
+    group_name = groups.collect {|g| g.name}
+    (CONFIG['admin_emails'] && CONFIG['admin_emails'].include?(email)) or(group_name.include? CONFIG['admin_group'])
+  end
+
+  def components
+    components_group = {}
+    groups.each do |g|
+	  g.components.each do |c|
+	    components_group[c.component] = [] if components_group[c.component].nil?
+		components_group[c.component].push c
+	  end
+	end
+	components_group
   end
 
 end

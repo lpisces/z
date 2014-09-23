@@ -6,8 +6,10 @@ default: &default
 development:
   <<: *default
   admin_emails:
-    - iamalazyrat@gmail.com
-    - tangmingming@haodou.com
+    #- iamalazyrat@gmail.com
+    #- tangmingming@haodou.com
+  admin_group: 管理员
+  guest_group: 访客
 
 test:
   <<: *default
@@ -19,4 +21,8 @@ production:
 
   admin_emails:
     # - admin@example.com
-    - iamalazyrat@gmail.com
+    #- iamalazyrat@gmail.com
+
+  admin_group: 管理员
+  guest_group: 访客
+

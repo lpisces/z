@@ -1,0 +1,27 @@
+= form_for(@cpanel_user, :html => {:class => 'form-horizontal'} ) do |f|
+  - if @cpanel_user.errors.any?
+    .alert.alert-error
+      %button.close{"data-dismiss" => "alert", :type => "button"} x
+      = I18n.t('errors.messages.not_saved', count: @cpanel_user.errors.count)
+
+  .control-group{:class => ('error' unless @cpanel_user.errors[:nick].empty?)}
+    = f.label :nick, I18n.t('cpanel_users.nick'), :class => 'control-label', :style => 'width:80px'
+    .controls{:style => 'margin-left:100px;'}
+      = f.text_field :nick, :autofocus => true
+      %span.help-inline= @cpanel_user.errors[:nick].first unless @cpanel_user.errors[:nick].empty?
+
+  .control-group{:class => ('error' unless @cpanel_user.errors[:email].empty?)}
+    = f.label :email, I18n.t('cpanel_users.email'), :class => 'control-label', :style => 'width:80px'
+    .controls{:style => 'margin-left:100px;'}
+      = f.text_field :email, :autofocus => true
+      %span.help-inline= @cpanel_user.errors[:email].first unless @cpanel_user.errors[:email].empty?
+
+  .control-group{:class => ('error' unless @cpanel_user.errors[:group_ids].empty?)}
+    = f.label :email, I18n.t('cpanel_users.groups'), :class => 'control-label', :style => 'width:80px'
+    .controls{:style => 'margin-left:100px;'}
+      = f.collection_check_boxes :group_ids, Group.all, :id, :name, {}, {:style => "float:left"}
+      %span.help-inline= @cpanel_user.errors[:group_ids].first unless @cpanel_user.errors[:group_ids].empty?
+
+  .control-group
+    .controls{:style => 'margin-left:100px;'}
+      = f.submit I18n.t('cpanel_users.submit'), :class => 'btn btn-mini btn-success'

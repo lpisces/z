@@ -5,8 +5,16 @@ class ApplicationController < ActionController::Base
   
   helper_method :login?, :current_user
 
+  include Pundit
+  #rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
   protected
 
+#  def user_not_authorized
+#    unless login?
+#      redirect_to sign_in_path(return_to: (request.fullpath if request.get?))
+#    end
+#  end
 
   def login_as(user)
     session[:user_id] = user.id

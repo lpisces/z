@@ -2,11 +2,29 @@ Rails.application.routes.draw do
 
 
 
+  namespace :cpanel do
+    resources :components
+  end
+
+  namespace :cpanel do
+  get 'user_group/index'
+  end
+
+  namespace :cpanel do
+    resources :groups
+  end
+
+  namespace :cpanel do
+    resources :settings
+  end
+
+  namespace :cpanel do
+    resources :users
+  end
+
   get 'channel_stat/index'
 
   get 'channel_stat/app'
-
-  resources :apps
 
   get 'home/index'
 

@@ -108,6 +108,49 @@
 
   cpanel:
     title: '后台'
+    already_have: "已有"
+    user_unit: "名"
+    group_unit: "个"
+    user: "用户"
+    group: "组"
+    users_index: "管理"
+    users_new: "新增"
+    groups_index: "管理"
+    groups_new: "新增"
+    components: "模块"
+
+  cpanel_users:
+    title: "用户管理"
+    nick: "昵称"
+    username: "用户名"
+    email: "邮箱"
+    groups: "组"
+    submit: "提交"
+  cpanel_groups:
+    title: "组管理"
+    name: "组名"
+    description: "描述"
+    components: "模块"
+    submit: "提交"
+  cpanel_settings:
+    title: "系统配置"
+    key: "配置项"
+    value: "值"
+    group: "配置分组"
+    desc: "描述"
+    submit: "提交"
+  cpanel_user_group:
+    title: "用户和组"
+  cpanel_components:
+    title: "模块"
+    component: "模块"
+    sub: "子模块"
+    controller: "控制器"
+    action: "方法"
+    status: "状态"
+    status_true: "启用"
+    status_false: "禁用"
+    submit: "提交"
   
   errors:
     messages:

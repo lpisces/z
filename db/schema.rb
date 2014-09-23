@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140902153559) do
+ActiveRecord::Schema.define(version: 20140922085811) do
 
   create_table "apps", force: true do |t|
     t.string   "name"
@@ -48,10 +48,50 @@ ActiveRecord::Schema.define(version: 20140902153559) do
     t.boolean  "is_parent",  default: false
   end
 
+  create_table "components", force: true do |t|
+    t.string   "component"
+    t.string   "sub"
+    t.boolean  "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "controller"
+    t.string   "action"
+  end
+
+  create_table "components_groups", force: true do |t|
+    t.string   "component_id"
+    t.string   "group_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "contents", force: true do |t|
     t.text     "content"
     t.integer  "page"
     t.integer  "article_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "cpanel_settings", force: true do |t|
+    t.string   "key"
+    t.string   "value"
+    t.string   "group"
+    t.string   "desc"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "groups", force: true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "groups_users", force: true do |t|
+    t.integer  "group_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

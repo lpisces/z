@@ -1,0 +1,29 @@
+= form_for(@cpanel_group, :html => {:class => 'form-horizontal'} ) do |f|
+  - if @cpanel_group.errors.any?
+    .alert.alert-error
+      %button.close{"data-dismiss" => "alert", :type => "button"} x
+      = I18n.t('errors.messages.not_saved', count: @cpanel_group.errors.count)
+
+  .control-group{:class => ('error' unless @cpanel_group.errors[:name].empty?)}
+    = f.label :name, I18n.t('cpanel_groups.name'), :class => 'control-label', :style => 'width:80px'
+    .controls{:style => 'margin-left:100px;'}
+      = f.text_field :name, :autofocus => true
+      %span.help-inline= @cpanel_group.errors[:name].first unless @cpanel_group.errors[:name].empty?
+  .control-group{:class => ('error' unless @cpanel_group.errors[:description].empty?)}
+    = f.label :description, I18n.t('cpanel_groups.description'), :class => 'control-label', :style => 'width:80px'
+    .controls{:style => 'margin-left:100px;'}
+      = f.text_area :description, :autofocus => true
+      %span.help-inline= @cpanel_group.errors[:description].first unless @cpanel_group.errors[:description].empty?
+
+  .control-group{:class => ('error' unless @cpanel_group.errors[:components].empty?)}
+    = f.label :components, I18n.t('cpanel_groups.components'), :class => 'control-label', :style => 'width:80px'
+    .controls{:style => 'margin-left:100px;'}
+      - @components_groups.each do |k, v|
+        .component.pull-left{:style => "width:100px;"}
+          %h5= k
+          = f.collection_check_boxes :component_ids, v, :id, :sub, {}, {:style => "float:left"}
+      %span.help-inline= @cpanel_group.errors[:components].first unless @cpanel_group.errors[:components].empty?
+
+  .control-group
+    .controls{:style => 'margin-left:100px;'}
+      = f.submit I18n.t('cpanel_groups.submit'), :class => 'btn btn-mini btn-success'

@@ -1,0 +1,23 @@
+%ul.breadcrumb
+  %li
+    %a{:href => "/cpanel"}= I18n.t('cpanel.title')
+    %span.divider /
+  %li
+    %a{:href => cpanel_components_path}= I18n.t("cpanel_components.title")
+    %span.divider /
+  %li.active= I18n.t('common.show')
+
+%table.table.table-condensed.table-bordered.table-hover
+  %tr
+    %th= I18n.t('cpanel_components.component')
+    %td= @cpanel_component.component
+  %tr
+    %th= I18n.t('cpanel_components.sub')
+    %td= @cpanel_component.sub
+  %tr
+    %th= I18n.t('cpanel_components.status')
+    %td= @cpanel_component.status
+  
+= link_to I18n.t('common.edit'), edit_cpanel_component_path(@cpanel_component)
+\|
+= link_to I18n.t('common.back'), cpanel_components_path

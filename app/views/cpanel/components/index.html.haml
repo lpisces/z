@@ -1,0 +1,28 @@
+%ul.breadcrumb
+  %li
+    %a{:href => "/cpanel"}= I18n.t('cpanel.title')
+    %span.divider /
+  %li.active= I18n.t("cpanel_components.title")
+
+
+%table.table.table-condensed.table-bordered.table-hover
+  %tr
+    %th= I18n.t('cpanel_components.component')
+    %th= I18n.t('cpanel_components.sub')
+    %th= I18n.t('cpanel_components.status')
+    %th= I18n.t('cpanel_components.controller')
+    %th= I18n.t('cpanel_components.action')
+    %th
+
+  - @cpanel_components.each do |cpanel_component|
+    %tr
+      %td= cpanel_component.component
+      %td= cpanel_component.sub
+      %td= cpanel_component.status ? I18n.t("cpanel_components.status_true") : I18n.t("cpanel_components.status_false")
+      %td= cpanel_component.controller
+      %td= cpanel_component.action
+      %td
+        = link_to '<i class="icon-pencil"></i>'.html_safe, edit_cpanel_component_path(cpanel_component)
+        = link_to '<i class="icon-remove"></i>'.html_safe, cpanel_component, :method => :delete, :data => { :confirm => I18n.t('common.confirm') }
+
+= link_to I18n.t('common.new'), new_cpanel_component_path

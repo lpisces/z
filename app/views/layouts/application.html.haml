@@ -46,13 +46,24 @@
                       %b.caret
                     %ul.dropdown-menu
                       %li
-                        %a{:href => apps_path}= I18n.t('apps.title')
+                        %a{:href => cpanel_settings_path}= I18n.t('cpanel_settings.title')
                       %li
-                        %a{:href => stat_index_path}= I18n.t('stats.title')
+                        %a{:href => cpanel_user_group_index_path}= I18n.t('cpanel_user_group.title')
                       %li
-                        %a{:href => channel_stat_index_path}= I18n.t('channel_stats.title')
+                        %a{:href => cpanel_components_path}= I18n.t('cpanel_components.title')
                       %li
-                        /%a{:href => categories_path}= I18n.t('categories.title')
+              %ul.nav.pull-right
+                - if login? and !current_user.components.empty?
+                  %li.dropdown
+                    %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                      = I18n.t('cpanel.components')
+                      %b.caret
+                    %ul.dropdown-menu
+                      - current_user.components.each do |k, v|
+                        %li
+                          %a{:href => "/cpanel/#{v.first.controller.to_s}/"}= k
+                
+                
                 
     .container{:style => 'width:990px;mragin:0 auto;'}
       #wrapper{:style => 'margin-top:50px;'}
