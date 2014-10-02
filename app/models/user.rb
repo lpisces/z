@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
 
   validates :email, uniqueness: true
   validates_format_of :email, :with => /\A[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,}\z/i
-  validates :nick, uniqueness: true, length: {maximum: 32, minimum: 2}
+  validates :nick, uniqueness: true, length: {maximum: 32, minimum: 0}
   has_many :authentications
   has_and_belongs_to_many :groups
 

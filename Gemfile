@@ -15,7 +15,7 @@ gem 'spring',        group: :development
 gem 'bcrypt', '~> 3.1.7'
 gem "pundit"
 
-gem 'debugger', group: [:development, :test]
+#gem 'debugger', group: [:development, :test]
 
 #auth
 gem 'omniauth-identity'
